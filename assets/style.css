@@ -1,0 +1,1235 @@
+/* === Reset & Base === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  background: #f2f4f7;
+  color: #1d1d1f;
+  line-height: 1.45;
+  padding-bottom: max(60px, calc(env(safe-area-inset-bottom) + 24px));
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+button,
+input[type="search"],
+select,
+[role="button"],
+.sel-add-btn,
+.kit-group-header,
+.search-clear-btn,
+.selected-btn,
+.group-btn,
+.sel-action-btn,
+.sel-remove-btn,
+.sel-close {
+  touch-action: manipulation;
+}
+
+/* === Sticky Top Bar === */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid #d1d5db;
+  padding: 10px 12px;
+  padding-top: max(10px, calc(env(safe-area-inset-top) + 6px));
+  padding-left: max(12px, env(safe-area-inset-left));
+  padding-right: max(12px, env(safe-area-inset-right));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.top-bar .row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.top-bar .search-row {
+  position: relative;
+}
+
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 4px 8px;
+  min-height: 32px;
+  min-width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.search-clear-btn:hover {
+  background: #f3f4f6;
+  color: #1d1d1f;
+}
+
+.search-clear-btn.hidden {
+  display: none;
+}
+
+.top-bar input[type="search"],
+.top-bar select {
+  font-size: 16px; /* prevents iOS zoom */
+  padding: 10px 12px;
+  border: 1px solid #c4c8cf;
+  border-radius: 8px;
+  background: #f7f8fa;
+  color: #1d1d1f;
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 44px;
+}
+
+.top-bar input[type="search"] {
+  flex: 1;
+  min-width: 0;
+  padding-right: 44px;
+}
+
+.top-bar select {
+  flex: 1 1 140px;
+  min-width: 0;
+  max-width: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  text-overflow: ellipsis;
+}
+
+.top-bar input[type="search"]:focus,
+.top-bar select:focus {
+  outline: none;
+  border-color: #3478f6;
+  box-shadow: 0 0 0 2px rgba(52, 120, 246, 0.25);
+}
+
+/* === Status Bar === */
+.status-bar {
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  color: #6b7280;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.status-bar.filtering {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* === Card List === */
+.card-list {
+  padding: 10px 12px;
+  padding-left: max(12px, env(safe-area-inset-left));
+  padding-right: max(12px, env(safe-area-inset-right));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.card .nsn {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #3478f6;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+  word-break: break-word;
+  font-variant-numeric: tabular-nums;
+}
+
+.card .desc {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.card .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.card .meta span {
+  white-space: nowrap;
+}
+
+.card .meta .label {
+  font-weight: 500;
+  color: #4b5563;
+}
+
+/* === No Results === */
+.no-results {
+  text-align: center;
+  padding: 48px 20px;
+  color: #6b7280;
+}
+
+.no-results p {
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.no-results button {
+  font-size: 1rem;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  background: #3478f6;
+  color: #fff;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.no-results button:active {
+  background: #2563eb;
+}
+
+/* === Selected Button (top bar) === */
+.selected-btn {
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0 14px;
+  border: 1px solid #3478f6;
+  border-radius: 8px;
+  background: #fff;
+  color: #3478f6;
+  cursor: pointer;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.selected-btn:active {
+  background: #eef4ff;
+}
+
+/* === Add/Added button on cards & table === */
+/* 44px is the minimum comfortable touch target; the desktop table overrides
+   this back down, where a mouse is doing the pointing and row height matters. */
+.sel-add-btn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 14px;
+  border: 1px solid #3478f6;
+  border-radius: 6px;
+  background: #fff;
+  color: #3478f6;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 60px;
+  white-space: nowrap;
+}
+
+.sel-add-btn.added {
+  background: #3478f6;
+  color: #fff;
+}
+
+.sel-add-btn:active {
+  opacity: 0.8;
+}
+
+/* Card top row for NSN + Add button */
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.card-top-left {
+  min-width: 0;
+  flex: 1;
+}
+
+/* Table selection cell */
+.sel-cell {
+  width: 70px;
+  text-align: center;
+}
+
+/* === Selection Drawer (slide-in from right) === */
+.sel-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 200;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.sel-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sel-drawer.hidden {
+  transform: translateX(100%);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sel-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  background: #f2f4f7;
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateX(0);
+  transition: transform 0.3s ease, visibility 0s linear 0s;
+  padding-right: env(safe-area-inset-right);
+}
+
+.sel-drawer.hidden {
+  transition: transform 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.sel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  padding-top: max(14px, calc(env(safe-area-inset-top) + 6px));
+  background: #fff;
+  border-bottom: 1px solid #d1d5db;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.sel-close {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sel-action-btn {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #3478f6;
+  color: #fff;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.sel-action-btn:active {
+  background: #2563eb;
+}
+
+.sel-action-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.sel-clear-btn {
+  background: #ef4444;
+}
+
+.sel-clear-btn:active {
+  background: #dc2626;
+}
+
+.sel-list {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding: 10px 12px;
+  padding-bottom: max(10px, calc(env(safe-area-inset-bottom) + 12px));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sel-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.sel-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.sel-card .nsn {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #3478f6;
+  letter-spacing: 0.02em;
+  word-break: break-word;
+  font-variant-numeric: tabular-nums;
+}
+
+.sel-card .desc {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.sel-card .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.sel-card .meta .label {
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.sel-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.sel-remove-btn {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border: 1px solid #ef4444;
+  border-radius: 6px;
+  background: #fff;
+  color: #ef4444;
+  cursor: pointer;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.sel-remove-btn:active {
+  background: #fef2f2;
+}
+
+/* === Group by Kit button === */
+.group-btn {
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0 14px;
+  border: 1px solid #c4c8cf;
+  border-radius: 8px;
+  background: #f7f8fa;
+  color: #374151;
+  cursor: pointer;
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.group-btn:active {
+  background: #e5e7eb;
+}
+
+.group-btn.active {
+  background: #3478f6;
+  color: #fff;
+  border-color: #3478f6;
+}
+
+/* === Kit Groups (Group by Kit view) === */
+.kit-group {
+  margin-bottom: 8px;
+}
+
+.kit-group-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  background: #e8edf5;
+  border: 1px solid #c4cfe4;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1d3461;
+  transition: background 0.15s ease;
+}
+
+.kit-group-header[aria-expanded="false"] {
+  border-radius: 8px;
+}
+
+.kit-group-header[aria-expanded="true"] {
+  border-radius: 8px 8px 0 0;
+  border-bottom-color: transparent;
+}
+
+.kit-group-header:hover {
+  background: #dce5f5;
+}
+
+.kit-group-chevron {
+  font-size: 0.65rem;
+  color: #3478f6;
+  flex-shrink: 0;
+  width: 12px;
+  text-align: center;
+}
+
+.kit-group-name {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+  line-height: 1.35;
+}
+
+.kit-group-count {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #3478f6;
+  background: #fff;
+  border: 1px solid #c4cfe4;
+  border-radius: 10px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.kit-group-body {
+  border: 1px solid #c4cfe4;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.kit-group-body .card {
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.kit-group-body .card:last-child {
+  border-bottom: none;
+}
+
+/* === Footer === */
+.footer {
+  text-align: center;
+  padding: 24px 12px 16px;
+  padding-bottom: max(16px, calc(env(safe-area-inset-bottom) + 8px));
+  padding-left: max(12px, env(safe-area-inset-left));
+  padding-right: max(12px, env(safe-area-inset-right));
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* === Loading / Error === */
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* === Desktop table view (>= 768px) === */
+@media (min-width: 920px) {
+  .card-list {
+    padding: 12px 20px;
+  }
+
+  .inv-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  /* No overflow clipping here: it would make the table the sticky containing
+     block, so the header below would offset from the table instead of the
+     viewport and sit on top of the first rows. Round the corner cells instead. */
+  .inv-table thead th:first-child {
+    border-top-left-radius: 8px;
+  }
+
+  .inv-table thead th:last-child {
+    border-top-right-radius: 8px;
+  }
+
+  .inv-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+  }
+
+  .inv-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+  }
+
+  .inv-table th,
+  .inv-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.85rem;
+  }
+
+  .inv-table th {
+    background: #f9fafb;
+    font-weight: 600;
+    color: #374151;
+    position: sticky;
+    top: var(--topbar-h, 102px);
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  /* Column order: 1 Add, 2 NSN, 3 Description, 4 Qty, 5 UoM,
+     6 Unit Price, 7 Source, 8 Acct, 9 Kits / Ext. Price. */
+  .inv-table td:nth-child(2) {
+    font-weight: 500;
+    color: #3478f6;
+    /* Keep an NSN on one line: it is the primary identifier here, and a
+       hyphen break reads as two part numbers. nowrap sets the column's
+       min-content width from the string itself, so no magic number is
+       needed; the description column absorbs the slack and wraps. */
+    white-space: nowrap;
+  }
+
+
+
+  .inv-table td:nth-child(7) {
+    white-space: nowrap;
+  }
+
+  /* Only the description needs to break inside a word. */
+  .inv-table td:nth-child(3) {
+    overflow-wrap: anywhere;
+  }
+
+  .inv-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .inv-table .sel-cell {
+    width: 70px;
+    text-align: center;
+    padding: 10px 8px;
+  }
+}
+
+/* === Narrow phones (<= 380px): keep controls usable === */
+@media (max-width: 380px) {
+  .top-bar {
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+  }
+
+  .top-bar .row {
+    gap: 6px;
+  }
+
+  .selected-btn,
+  .group-btn {
+    padding: 0 10px;
+    font-size: 13px;
+  }
+
+  .group-btn {
+    flex-basis: 100%;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card-list {
+    padding: 8px 10px;
+  }
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* === Tabs === */
+.top-bar .row.tab-row {
+  justify-content: space-between;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: #e8eaed;
+  border-radius: 9px;
+  padding: 3px;
+}
+
+.tab {
+  border: 0;
+  background: transparent;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.tab.active {
+  background: #fff;
+  color: #1d1d1f;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14);
+}
+
+/* Row-level utility only: .hidden on the drawer drives its slide animation. */
+.top-bar .row.hidden {
+  display: none;
+}
+
+/* === Badges === */
+.badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.badge-kit {
+  background: #e0ecff;
+  color: #1d4ed8;
+}
+
+.badge-warn {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-controlled {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.badge-sg {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.badge-cold {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+/* === Kit tree === */
+.kit-tree {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin: 10px 12px;
+}
+
+.kit-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid #eef0f3;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* One tree row: an expand toggle beside the link to the kit. */
+.kit-node {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid #eef0f3;
+}
+
+.kit-node:last-child {
+  border-bottom: 0;
+}
+
+.kit-node .kit-row {
+  flex: 1;
+  min-width: 0;
+  border-bottom: 0;
+  padding-left: 4px;
+}
+
+.kit-toggle,
+.kit-toggle-spacer {
+  flex: 0 0 40px;
+  min-height: 44px;
+}
+
+.kit-toggle {
+  border: 0;
+  background: none;
+  color: #6b7280;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.kit-toggle:active {
+  background: #f2f4f7;
+}
+
+.kit-row:active {
+  background: #f2f4f7;
+}
+
+.kit-row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.kit-row-name {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.kit-row-nsn {
+  font-size: 12px;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+
+.kit-row-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: 12px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+/* === Kit detail === */
+.kit-detail {
+  padding: 12px;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 14px;
+  color: #3478f6;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.kit-title {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.kit-sub {
+  font-size: 13px;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+
+.kit-parent {
+  font-size: 13px;
+  color: #4b5563;
+  margin-top: 6px;
+}
+
+.kit-parent a {
+  color: #3478f6;
+  text-decoration: none;
+}
+
+.kit-stats {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.stat {
+  flex: 1;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-top: 2px;
+}
+
+.kit-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.kit-actions .sel-action-btn {
+  flex: 1;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+/* "Export / Download: CSV · Excel · PDF" — a labelled row of format buttons.
+   In the drawer it takes a row of its own above Print / Clear list. */
+.export-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 100%;
+}
+
+.kit-actions .export-group {
+  flex: 1 1 280px;
+}
+
+.export-group .sel-action-btn,
+.kit-actions .export-group .sel-action-btn {
+  flex: 1;
+  min-width: 0;
+}
+
+.export-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4b5563;
+  white-space: nowrap;
+}
+
+/* === Item detail / memberships === */
+.detail-toggle {
+  margin-top: 8px;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #3478f6;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.memberships {
+  margin-top: 8px;
+  border-top: 1px dashed #d1d5db;
+  padding-top: 8px;
+}
+
+.memberships-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.membership {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f1f3f5;
+  text-decoration: none;
+  color: inherit;
+}
+
+.membership:last-child {
+  border-bottom: 0;
+}
+
+.membership-name {
+  flex: 1;
+  min-width: 140px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #3478f6;
+}
+
+.membership-nsn {
+  font-size: 12px;
+  color: #6b7280;
+  font-variant-numeric: tabular-nums;
+}
+
+.membership-qty {
+  font-size: 12px;
+  color: #4b5563;
+  font-variant-numeric: tabular-nums;
+}
+
+.card-kit {
+  border-left: 3px solid #3478f6;
+}
+
+/* === Pick list additions === */
+.sel-total {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4b5563;
+  padding: 0 0 10px;
+}
+
+.qty-input {
+  width: 80px;
+  padding: 8px 10px;
+  /* 16px keeps iOS from zooming the page when the field takes focus. */
+  font-size: 16px;
+  min-height: 44px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* === Desktop table extras === */
+@media (min-width: 920px) {
+  .inv-table .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .inv-table .row-kit td {
+    background: #f7faff;
+  }
+
+  .inv-table .detail-row td {
+    background: #fafbfc;
+    padding-top: 0;
+  }
+
+  .inv-table .detail-toggle {
+    margin-top: 0;
+    padding: 3px 10px;
+    min-height: 26px;
+  }
+
+  .inv-table .sel-add-btn {
+    min-height: 30px;
+    min-width: 0;
+    padding: 3px 12px;
+  }
+
+  /* .card-list is a column flex container, and auto side margins would stop a
+     child from stretching, so pin the width explicitly. */
+  .kit-tree,
+  .kit-detail {
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* === Print: the pick list is what gets carried around === */
+@media print {
+  .top-bar,
+  .status-bar,
+  .footer,
+  .card-list,
+  .sel-overlay,
+  .sel-actions,
+  .sel-close,
+  .sel-add-btn,
+  .sel-remove-btn,
+  .detail-toggle {
+    display: none !important;
+  }
+
+  /* A closed drawer has never been rendered, so printing it would emit an empty
+     pick list. Print the inventory itself in that case. */
+  .sel-drawer.hidden {
+    display: none !important;
+  }
+
+  body:has(.sel-drawer.hidden) .card-list {
+    display: flex !important;
+  }
+
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .sel-drawer {
+    position: static;
+    visibility: visible;
+    transform: none;
+    max-height: none;
+    box-shadow: none;
+    width: 100%;
+    max-width: none;
+  }
+
+  .sel-card {
+    break-inside: avoid;
+  }
+
+  .qty-input {
+    border: 0;
+    padding: 0;
+  }
+}
+
+/* === Long unbroken descriptions (e.g. "…ANALYSER)LACTATE/PH/PCO2/PO2/TCO2")
+   have no break opportunity and would push the page sideways. === */
+.card .desc,
+.sel-card .desc,
+.kit-row-name,
+.kit-title,
+.membership-name {
+  overflow-wrap: anywhere;
+}
+
+/* The search field already has its own clear button; hide the browser's. */
+#search::-webkit-search-cancel-button,
+#search::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.sel-action-btn[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* === Long lists render a page at a time === */
+.show-more {
+  display: block;
+  width: calc(100% - 24px);
+  max-width: 1100px;
+  margin: 12px auto;
+  min-height: 44px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #fff;
+  color: #3478f6;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+a.detail-toggle {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.inv-table td a {
+  color: #3478f6;
+  text-decoration: none;
+}

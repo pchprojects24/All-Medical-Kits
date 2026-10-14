@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Med Kits">
+  <meta name="theme-color" content="#3478f6">
+  <meta name="color-scheme" content="light">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="Searchable browser for every medical kit in the SharePoint catalogue: browse kits by hierarchy, search every item by NSN, description or keyword, and build exportable pick lists.">
+  <title>All Medical Kits</title>
+  <link rel="icon" href="assets/icon.svg?v=c9e7259824" type="image/svg+xml">
+  <!-- iOS ignores apple-touch-icon when it is an SVG, so this one is a PNG. -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=acde2730cc">
+  <link rel="manifest" href="assets/manifest.webmanifest?v=6967cf5d53">
+  <link rel="stylesheet" href="assets/style.css?v=1b446f67a4">
+</head>
+<body>
+
+  <div class="top-bar">
+    <div class="row tab-row">
+      <div class="tabs" role="tablist" aria-label="View">
+        <button id="tab-items" class="tab active" role="tab" aria-selected="true">Items</button>
+        <button id="tab-kits" class="tab" role="tab" aria-selected="false">Kits</button>
+      </div>
+      <button id="selected-btn" class="selected-btn" aria-label="View pick list">List (0)</button>
+    </div>
+    <div class="row search-row">
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search NSN, description, keyword, kit…" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Search inventory">
+        <button id="search-clear" class="search-clear-btn hidden" aria-label="Clear search">&times;</button>
+      </div>
+    </div>
+    <div class="row" id="item-controls">
+      <select id="kit-filter" aria-label="Filter by kit">
+        <option value="">All Kits</option>
+      </select>
+      <select id="type-filter" aria-label="Filter by item type">
+        <option value="">All Types</option>
+      </select>
+      <select id="sort-select" aria-label="Sort items">
+        <option value="nsn-asc">NSN A→Z</option>
+        <option value="nsn-desc">NSN Z→A</option>
+        <option value="description-asc">Desc A→Z</option>
+        <option value="description-desc">Desc Z→A</option>
+        <option value="qty-asc">Qty Low→High</option>
+        <option value="qty-desc">Qty High→Low</option>
+        <option value="price-asc">Price Low→High</option>
+        <option value="price-desc">Price High→Low</option>
+      </select>
+      <button id="group-btn" class="group-btn" aria-pressed="false">Group by Kit</button>
+    </div>
+  </div>
+
+  <div class="status-bar" id="status-bar">Loading…</div>
+
+  <div class="card-list" id="item-list"></div>
+
+  <div class="footer">Source: <code>Data/source/</code> (SharePoint export of all medical kits) · Generated: <code>Data/inventory.json</code>, <code>Data/kit_items.csv</code>, <code>Data/kits/</code></div>
+
+  <div id="sel-overlay" class="sel-overlay hidden"></div>
+  <div id="sel-drawer" class="sel-drawer hidden" role="dialog" aria-modal="true" aria-labelledby="sel-title" aria-hidden="true" inert>
+    <div class="sel-header">
+      <span id="sel-title">Pick list (0)</span>
+      <button id="sel-close" class="sel-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="sel-actions">
+      <div class="export-group" id="sel-export" role="group" aria-label="Export pick list">
+        <span class="export-label">Export</span>
+        <button class="sel-action-btn" data-export="csv">CSV</button>
+        <button class="sel-action-btn" data-export="xlsx">Excel</button>
+        <button class="sel-action-btn" data-export="pdf">PDF</button>
+      </div>
+      <button id="sel-print" class="sel-action-btn">Print</button>
+      <button id="sel-clear" class="sel-action-btn sel-clear-btn">Clear list</button>
+    </div>
+    <div id="sel-list" class="sel-list"></div>
+  </div>
+
+  <script src="assets/export.js?v=dfc7268bb3"></script>
+  <script src="assets/app.js?v=cc8a435cd9"></script>
+</body>
+</html>

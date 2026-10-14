@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Medical kits inventory">
+  <rect width="512" height="512" rx="96" fill="#3478f6"/>
+  <rect x="216" y="112" width="80" height="288" rx="16" fill="#fff"/>
+  <rect x="112" y="216" width="288" height="80" rx="16" fill="#fff"/>
+</svg>
