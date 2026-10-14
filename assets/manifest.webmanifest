@@ -1,0 +1,31 @@
+{
+  "name": "All Medical Kits",
+  "short_name": "Med Kits",
+  "description": "Searchable browser for every medical kit in the SharePoint catalogue: browse kits by hierarchy, search every item by NSN, description or keyword, and build exportable pick lists.",
+  "start_url": "../index.html",
+  "scope": "../",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f2f4f7",
+  "theme_color": "#3478f6",
+  "lang": "en",
+  "categories": [
+    "medical",
+    "productivity",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
